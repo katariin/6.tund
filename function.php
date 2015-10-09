@@ -28,9 +28,9 @@
 				
 				    // lisame selle massiivi
 					array_push($array, $car);
-					echo $array;
-					var_dump($array);
-					echo"</pre>";
+					//echo $array;
+					//var_dump($array);
+					//echo"</pre>";
 				
 			
 			}
