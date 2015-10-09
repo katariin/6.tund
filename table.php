@@ -2,7 +2,7 @@
 
 
           //table.php
-		  require_once("fuction.php");
+		  require_once("function.php");
 		  $car_list=getCarData();
 		  //var_dump($car_list);
 		  
@@ -27,7 +27,7 @@
 	<?php
 	                   //iga massiivis olema elemendi kohta
 					   //count ($car_list) - massiiivi pikkus
-					   for($i = 0; $i < count($cat_list); $i++){
+					   for($i = 0; $i < count($car_list); $i++){
 						   // $i = $i + 1; sama mis $i= +=1; sama mis $i++;
 						   echo"<tr>";
 						   
@@ -40,9 +40,6 @@
 						   echo"</tr>";
 					   }
 					   
-					   $stmt $mysqli->prepare("SELECT user_id, color FROM car_plates");
-					   $stmt->bind_result($user_id, $color_from_db);
-			           $stmt->execute();
 	
 	?>
 </tr>

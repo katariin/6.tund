@@ -3,14 +3,15 @@
      //function php
      // ühenduse loomiseks kasuta
 	    require_once("../configglobal.php");
-		$database = "if15_kati"
+		$database="if15_jekavor";
 
 	// loome uue funktsiooni
         function getCarData() {
 			
 			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
-			$stmt $mysqli->prepare("SELECT id, user_id, number_plate, color, FROM car_plates");
+			$stmt = $mysqli->prepare("SELECT id, user_id, number_plate, color FROM car_plates");
+			echo $mysqli->error;
 			$stmt->bind_result($id, $user_id, $number_plate, $color_from_db);
 			$stmt->execute();
 			
@@ -24,7 +25,7 @@
 				 // loon objekte
 				$car= new StdClass();
 				$car->id=$id;
-				$car=number_plate = $number_plate;
+				$car->number_plate = $number_plate;
 				
 				
 				    // lisame selle massiivi
@@ -34,7 +35,7 @@
 					//echo"</pre>";
 				
 			
-		}
+		    }
 			
 			$stmt->close();
 			$mysqli->close();
@@ -43,13 +44,16 @@
 			
 		}
 		
-		function deleteCar($id_to_be_deleted);
+		 
+		
+		function deleteCar($id_to_be_deleted){
+		
 		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
-			$stmt $mysqli->prepare("SELECT user_id, color FROM car_plates WHERE id IS NULL");
+			$stmt = $mysqli->prepare("SELECT user_id, color FROM car_plates WHERE id IS NULL");
 			$stmt->bind_param("i", $d_to_be_deleted);
 			
-			if$stmt->execute(){
+			if($stmt->execute()){
 				//sai edulalt kustutatud
 				header("Location: table.php");
 				
