@@ -6,7 +6,7 @@
 		$database = "if15_kati"
 
 	// loome uue funktsiooni
-        function getCarData(){
+        function getCarData() {
 			
 			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
@@ -15,7 +15,7 @@
 			$stmt->execute();
 			
 			//tühi  massiv kus hoiame objekte
-			$array= array();
+			$array=array();
 			
 			//tee tsüklit nii mitu korda, kui saad
 			//ab'ist ühe rea andmeid
@@ -24,7 +24,8 @@
 				 // loon objekte
 				$car= new StdClass();
 				$car->id=$id;
-				$car=number_plate;
+				$car=number_plate = $number_plate;
+				
 				
 				    // lisame selle massiivi
 					array_push($array, $car);
@@ -33,13 +34,29 @@
 					//echo"</pre>";
 				
 			
-			}
+		}
 			
 			$stmt->close();
 			$mysqli->close();
 			
+			return $array;
+			
 		}
 		
+		function deleteCar($id_to_be_deleted);
+		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
+			
+			$stmt $mysqli->prepare("SELECT user_id, color FROM car_plates WHERE id IS NULL");
+			$stmt->bind_param("i", $d_to_be_deleted);
+			
+			if$stmt->execute(){
+				//sai edulalt kustutatud
+				header("Location: table.php");
+				
+			}
 
-	
+	    }
+		
+		
+		
 ?>	
