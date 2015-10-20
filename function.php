@@ -11,7 +11,7 @@
 			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
 			$stmt = $mysqli->prepare("SELECT id, user_id, number_plate, color FROM car_plates");
-			echo $mysqli->error;
+			//echo $mysqli->error;
 			$stmt->bind_result($id, $user_id, $number_plate, $color_from_db);
 			$stmt->execute();
 			
@@ -51,14 +51,16 @@
 		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
 			$stmt = $mysqli->prepare("SELECT user_id, color FROM car_plates WHERE id IS NULL");
-			$stmt->bind_param("i", $d_to_be_deleted);
+			$stmt->bind_param("i", $id_to_be_deleted);
 			
 			if($stmt->execute()){
 				//sai edulalt kustutatud
 				header("Location: table.php");
 				
 			}
-
+			
+            $stmt->close();
+		    $mysqli->close();
 	    }
 		
 		

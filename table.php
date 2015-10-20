@@ -15,6 +15,10 @@
 			  deleteCar($_GET["delete"]);
 			  
 		  }
+		  
+		  
+$car_list = getCarData();
+		  
 ?>		  
 
 <table border=1>
@@ -22,12 +26,13 @@
     <th>id</th>
 	<th>kasut id</th>
 	<th>auto nr märk</th>
-	<th>XS</th>
+	<th>varv</th>
+	<th>X</th>
 	
-	<?php
+<?php
 	                   //iga massiivis olema elemendi kohta
 					   //count ($car_list) - massiiivi pikkus
-					 for($i = 0; $i < count($car_list); $i++){
+			for($i = 0; $i < count($car_list); $i++){
 						   
 						if (isset($_GET["edit"]) && $car_list[$i]->id == $GET["edit"]{
 							  //kasutajale muutmiseks
@@ -43,7 +48,7 @@
 							   echo"</form>";
 							   echo"<tr>Seda rida muudetakse</tr>";
 							 echo"</tr>";
-					       }else{
+					}else{
 							   //tavaline rida
 						   // $i = $i + 1; sama mis $i= +=1; sama mis $i++;
 						   echo"<tr>";
@@ -53,11 +58,13 @@
 						   echo "<td>". $car_list[$i]->number_plate."</td>";
 						   echo "<td>". $car_list[$i]->color."</td>";
 						   echo "<td><a href='?delete=". $car_list[$i]->id."'>X</a></td>";
-						   
+						   echo "<td><a href='?edit=".$car_list[$i]->id."'>edit</a></td>";
+			
+				
 						   echo"</tr>";
 					}
-					   
+			}		   
 	
-	?>
+?>
 </tr>
 </table>
